@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>バンクーバー お手洗いマップ</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-restroom"></i>
+            </div>
+            <h1>バンクーバー お手洗いマップ</h1>
+            <p class="description">バンクーバー、バーナビー、リッチモンドエリアの無料で利用できるお手洗いをご案内します</p>
+        </header>
+
+        <main>
+            <div class="map-container">
+                <div id="map"></div>
+            </div>
+            <div class="list-container">
+                <div class="toilet-list">
+                    <h2><i class="fas fa-list"></i> Restroom List</h2>
+                    <div id="toilet-items-container"></div>
+                </div>
+            </div>
+        </main>
+
+        <div class="map-legend">
+            <h3>施設タイプ</h3>
+            <div class="legend-items">
+                <div class="legend-item">
+                    <span class="legend-marker" style="background-color: #FFB6C1;"></span>
+                    <span>マクドナルド</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-marker" style="background-color: #E6E6FA;"></span>
+                    <span>ティムホートンズ</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-marker" style="background-color: #98FB98;"></span>
+                    <span>コミュニティセンター</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-marker" style="background-color: #87CEEB;"></span>
+                    <span>図書館</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-marker" style="background-color: #DDA0DD;"></span>
+                    <span>T&Tスーパーマーケット</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-marker" style="background-color: #F0E68C;"></span>
+                    <span>ガソリンスタンド</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-marker" style="background-color: #FFB6C1;"></span>
+                    <span>リアルカナディアンスーパーストア</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="toilet-detail-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="detail-title"></h2>
+                    <button class="close-modal"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="modal-body">
+                    <div id="detail-content"></div>
+                    <div class="rating-section">
+                        <h3><i class="fas fa-star"></i> Ratings</h3>
+                        <div id="rating-stars"></div>
+                    </div>
+                    <div class="comments-section">
+                        <h3><i class="fas fa-comments"></i> Comments</h3>
+                        <div id="comments-list"></div>
+                        <div class="add-comment">
+                            <input type="text" id="comment-author" placeholder="お名前">
+                            <textarea id="comment-text" placeholder="コメントを入力"></textarea>
+                            <button id="submit-comment">送信</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>© 2024 Vancouver Public Restrooms | Find clean and accessible restrooms in Greater Vancouver</p>
+        </footer>
+    </div>
+
+    <script type="module">
+        import { initMap } from './js/map.js';
+        import { renderToiletList } from './js/ui.js';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initMap();
+            renderToiletList();
+        });
+    </script>
+</body>
+</html> 
